@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>معرض الخواتم - تجربة AR</title>
+  
+  <!-- استدعاء المكتبة الرسمية من Google -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: #1a1a1a;
+      color: #ffffff;
+      height: 100vh;
+      overflow: hidden;
+    }
+    
+    /* حاوي الـ 3D View */
+    model-viewer {
+      width: 100vw;
+      height: 100vh;
+      --poster-color: transparent;
+    }
+
+    /* زر تجربة الواقع المعزز CUSTOM AR BUTTON */
+    .ar-button {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #e6c875, #b8860b);
+      color: #000;
+      font-weight: bold;
+      font-size: 16px;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 30px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 10;
+      transition: transform 0.2s ease;
+    }
+    .ar-button:active {
+      transform: translateX(-50%) scale(0.95);
+    }
+  </style>
+</head>
+<body>
+
+  <model-viewer 
+    src="ring.glb" 
+    ios-src="ring.usdz"
+    alt="خاتم مجوهرات 3D" 
+    ar 
+    ar-modes="scene-viewer quick-look webxr" 
+    camera-controls 
+    auto-rotate 
+    shadow-intensity="1.5"
+    exposure="1.2"
+    environment-image="neutral">
+    
+    <!-- الزر المخصص المربوط بـ AR -->
+    <button slot="ar-button" class="ar-button">
+      <span>تجربة الخاتم بالواقع المعزز 📷</span>
+    </button>
+
+  </model-viewer>
+
+</body>
+</html>
